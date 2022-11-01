@@ -14,7 +14,7 @@ const product = new Schema({
       type: String
     },
     category: {
-      type: String
+      type: {}
     },
     quantity: {
       type: Number
