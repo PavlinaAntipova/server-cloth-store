@@ -25,7 +25,7 @@ const getById = async (req, res, next) => {
         status: 'success',
         code: 200,
         data: {
-          contact: result,
+          category: result,
         },
       });
     }
@@ -33,7 +33,7 @@ const getById = async (req, res, next) => {
       res.status(code).json({
         status: 'error',
         code: `${code}`,
-        message: `Not found contact id: ${id}`,
+        message: `Not found category id: ${id}`,
         data: 'Not Found',
       });
   } catch (e) {
