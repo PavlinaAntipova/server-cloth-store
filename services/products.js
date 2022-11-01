@@ -5,13 +5,11 @@ const getProductByCondition = async (condition) => {
     const payload = condition.name.trim();
     return await Product.find({ "name": { $regex: payload, $options: 'i' } });
   }
-
   if (condition?.["parentCategory"] && condition?.["currentCategory"]) {
-    console.log(condition);
-    if (condition?.s) {
+    if (condition?.s === "1") {
        return await Product.find({ "category.parentCategory": condition.currentCategory} );
     } else {
-      return await Product.find({ category: condition });
+      return await Product.find({ category: {parentCategory: condition.parentCategory, currentCategory: condition.currentCategory} });
     }
   }
 
