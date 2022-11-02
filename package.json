@@ -16,7 +16,9 @@
     "jimp": "^0.16.1",
     "joi": "^17.6.0",
     "mongoose": "^6.3.5",
-    "morgan": "1.10.0"
+    "morgan": "1.10.0",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.5.0"
   },
   "devDependencies": {
     "eslint": "7.19.0",

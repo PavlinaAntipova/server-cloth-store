@@ -5,8 +5,7 @@ const category = new Schema({
       type: String
     },
     parentCategory: {
-        type: String,
-        default: "root"
+        type: String
     }, 
     childrenCategories: {
       type: [String],

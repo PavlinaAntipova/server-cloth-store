@@ -1,0 +1,550 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Cloth Store",
+    "description": "- [The Live Page](https://pavlinaantipova.github.io/cloth-store/)\n- [The Cloth Store Front-end (React.js) repository](https://github.com/PavlinaAntipova/cloth-store)\n- [The Cloth Store Back-end (Node.js) repository](https://github.com/PavlinaAntipova/server-cloth-store)",
+    "contact": {
+      "email": "pavlina.antipova@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://evil-spell-95875.herokuapp.com/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "categories"
+    },
+    {
+      "name": "products"
+    },
+    {
+      "name": "offers"
+    },
+    {
+      "name": "newsletter"
+    },
+    {
+      "name": "feedback"
+    },
+    {
+      "name": "order"
+    }
+  ],
+  "paths": {
+    "/categories": {
+      "get": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "Finds all Categories",
+        "operationId": "getCategories",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Categories not found"
+          }
+        }
+      }
+    },
+    "/categories/{categoryId}": {
+      "get": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "Find category by ID",
+        "description": "Returns a single category",
+        "operationId": "getCategoryById",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Category not found"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Finds all Products",
+        "operationId": "getProducts",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Products not found"
+          }
+        }
+      }
+    },
+    "/products/{name=name}": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Finds Products By Name",
+        "operationId": "getProductsByName",
+        "parameters": [
+          {
+            "name": "name=name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Products not found"
+          }
+        }
+      }
+    },
+    "/products/{_id=id}": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Finds Products By Id",
+        "operationId": "getProductsById",
+        "parameters": [
+          {
+            "name": "_id=id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Products not found"
+          }
+        }
+      }
+    },
+    "/products/{tag=tag}": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Finds Products By Tag",
+        "operationId": "getProductsByTag",
+        "parameters": [
+          {
+            "name": "tag=tag",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Products not found"
+          }
+        }
+      }
+    },
+    "/products/{parentCategory=pc+currentCategory=cc+subcategory=1/-1}": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Finds Products By Category",
+        "operationId": "getProductsByCategory",
+        "parameters": [
+          {
+            "name": "parentCategory=pc+currentCategory=cc+subcategory=1/-1",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Products not found"
+          }
+        }
+      }
+    },
+    "/offers": {
+      "get": {
+        "tags": [
+          "offers"
+        ],
+        "summary": "Finds actual one offer",
+        "operationId": "getOffer",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Offer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Offer not found"
+          }
+        }
+      }
+    },
+    "/newsletter": {
+      "post": {
+        "tags": [
+          "newsletter"
+        ],
+        "summary": "Add new email for newsletter",
+        "operationId": "addEmail",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Newsletter"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Newsletter"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Created"
+          }
+        }
+      }
+    },
+    "/feedback": {
+      "post": {
+        "tags": [
+          "feedback"
+        ],
+        "summary": "Add new feedback",
+        "operationId": "addFeedback",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Feedback"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Feedback"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Created"
+          }
+        }
+      }
+    },
+    "/order": {
+      "post": {
+        "tags": [
+          "order"
+        ],
+        "summary": "Add new order",
+        "operationId": "addOrder",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Created"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Category": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Jeans"
+          },
+          "parentCategory": {
+            "type": "string",
+            "example": "635e7630e15594cdb8a0d6f1"
+          },
+          "childrenCategories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "635e7630e15594cdb8a0d6f1",
+              "635e7630e15594cdb8a0d6f1"
+            ]
+          }
+        }
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Dress Blue"
+          },
+          "size": {
+            "type": "string",
+            "example": "M"
+          },
+          "price": {
+            "type": "integer",
+            "example": 25
+          },
+          "tag": {
+            "type": "string",
+            "example": "sale"
+          },
+          "quantity": {
+            "type": "integer",
+            "example": 3
+          },
+          "img": {
+            "type": "string",
+            "example": "https://img-link.jpeg"
+          },
+          "category": {
+            "type": "object",
+            "example": "{parentCategory: 635e7630e15594cdb8a0d6f1, currentCategory: 635e7630e15594cdb8a0d6f1}",
+            "properties": {
+              "parentCategory": {
+                "type": "string"
+              },
+              "currentCategory": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Newsletter": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "test@test.com"
+          }
+        }
+      },
+      "Feedback": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Mary"
+          },
+          "email": {
+            "type": "string",
+            "example": "user@mail.com"
+          },
+          "subject": {
+            "type": "string",
+            "example": "some text"
+          },
+          "message": {
+            "type": "string",
+            "example": "more text"
+          }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Mary"
+          },
+          "surname": {
+            "type": "string",
+            "example": "Key"
+          },
+          "email": {
+            "type": "string",
+            "example": "user@mail.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": 380974443222
+          },
+          "delivery": {
+            "type": "string",
+            "enum": [
+              "delivery",
+              "pickup"
+            ],
+            "example": "delivery"
+          },
+          "payment": {
+            "type": "string",
+            "enum": [
+              "card",
+              "amex"
+            ],
+            "example": "amex"
+          },
+          "cart": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            }
+          }
+        }
+      },
+      "Offer": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "new collection"
+          },
+          "text": {
+            "type": "string",
+            "example": "some text"
+          },
+          "img": {
+            "type": "string",
+            "example": "https://img-link.jpeg"
+          },
+          "tag": {
+            "type": "string",
+            "example": "new"
+          },
+          "active": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      }
+    }
+  }
+}

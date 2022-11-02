@@ -1,6 +1,9 @@
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
 
 const categoriesRouter = require('./routes/api/categories');
 const productsRouter = require('./routes/api/products');
@@ -10,7 +13,9 @@ const feedbackRouter = require('./routes/api/feedbacks');
 const orderRouter = require('./routes/api/orders');
 
 
+
 const app = express();
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
@@ -24,6 +29,8 @@ app.use('/api/offers', offersRouter);
 app.use('/api/newsletter', emailsRouter);
 app.use('/api/feedback', feedbackRouter);
 app.use('/api/order', orderRouter);
+
+
 
 app.use((req, res, next) => {
   res.status(404).json({
