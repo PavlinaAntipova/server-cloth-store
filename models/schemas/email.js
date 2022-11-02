@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const Joi = require("joi");
+
 
 const email = new Schema({
     email: {
@@ -7,7 +7,6 @@ const email = new Schema({
     }
 });
 
-const schemaAddEmail = Joi.object({ email: Joi.string().email().required() });
 
 const Email = model('email', email);
   

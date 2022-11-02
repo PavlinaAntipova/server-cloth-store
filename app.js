@@ -21,8 +21,8 @@ app.use(express.json());
 app.use('/api/categories', categoriesRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/offers', offersRouter);
-// app.use('/api/newsletter', emailsRouter);
-// app.use('/api/feedback', feedbackRouter);
+app.use('/api/newsletter', emailsRouter);
+app.use('/api/feedback', feedbackRouter);
 
 app.use((req, res, next) => {
   res.status(404).json({
