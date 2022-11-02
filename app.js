@@ -7,6 +7,7 @@ const productsRouter = require('./routes/api/products');
 const offersRouter = require('./routes/api/offers');
 const emailsRouter = require('./routes/api/emails');
 const feedbackRouter = require('./routes/api/feedbacks');
+const orderRouter = require('./routes/api/orders');
 
 
 const app = express();
@@ -23,6 +24,7 @@ app.use('/api/products', productsRouter);
 app.use('/api/offers', offersRouter);
 app.use('/api/newsletter', emailsRouter);
 app.use('/api/feedback', feedbackRouter);
+app.use('/api/order', orderRouter);
 
 app.use((req, res, next) => {
   res.status(404).json({
