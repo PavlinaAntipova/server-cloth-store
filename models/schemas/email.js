@@ -10,4 +10,4 @@ const email = new Schema({
 
 const Email = model('email', email);
   
-module.exports = { Email, schemaAddEmail };
+module.exports = { Email };
